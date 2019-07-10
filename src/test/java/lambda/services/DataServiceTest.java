@@ -1,5 +1,6 @@
 package lambda.services;
 
+import lambda.interfaces.MultiArgInterface;
 import lambda.interfaces.MyFunctionalInterface;
 import lambda.objects.Person;
 import org.assertj.core.api.Assertions;
@@ -58,5 +59,14 @@ public class DataServiceTest {
     public void myFunctionalInterfaceTest() {
         MyFunctionalInterface myFunctionalInterface = () -> System.out.println("Message from myFunctionalInterface");
         myFunctionalInterface.printMessage();
+    }
+
+    @Test
+    public void multiArgInterfaceTest() {
+        MultiArgInterface multiArgInterface = (x, y) -> {
+            int sum = x + y;
+            System.out.println("Sum = " + sum);
+        };
+        multiArgInterface.sum(50, 25);
     }
 }
