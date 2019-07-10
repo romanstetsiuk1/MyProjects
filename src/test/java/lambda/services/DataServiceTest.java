@@ -1,5 +1,6 @@
 package lambda.services;
 
+import lambda.interfaces.MyFunctionalInterface;
 import lambda.objects.Person;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -44,4 +45,18 @@ public class DataServiceTest {
 
     }
 
+    @Test
+    public void multiCommand() {
+        Runnable r1 = () -> {
+            System.out.println("Line 1");
+            System.out.println("Line 2");
+        };
+        new Thread(r1).start();
+    }
+
+    @Test
+    public void myFunctionalInterfaceTest() {
+        MyFunctionalInterface myFunctionalInterface = () -> System.out.println("Message from myFunctionalInterface");
+        myFunctionalInterface.printMessage();
+    }
 }
