@@ -78,16 +78,20 @@ public class DataServiceTest {
         List<Person> people = DataService.getPeople();
 
 //        sort
-        Collections.sort(people, new Comparator<Person>() {
-            @Override
-            public int compare(Person o1, Person o2) {
-                return o1.getLastName().compareToIgnoreCase(o2.getLastName());
-            }
-        });
+//        Collections.sort(people, new Comparator<Person>() {
+//            @Override
+//            public int compare(Person o1, Person o2) {
+//                return o1.getLastName().compareToIgnoreCase(o2.getLastName());
+//            }
+//        });
+//
+//        for (Person person : people) {
+//            System.out.println(person.getLastName());
+//        }
 
-        for (Person person : people) {
-            System.out.println(person.getLastName());
-        }
+        Comparator<Person> comparator = (o1, o2) -> o1.getLastName().compareToIgnoreCase(o2.getLastName());
+        people.sort(comparator);
+        people.forEach(person -> System.out.println(person.getLastName()));
     }
 
 }
