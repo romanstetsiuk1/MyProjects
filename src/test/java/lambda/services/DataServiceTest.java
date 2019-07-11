@@ -7,6 +7,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -69,4 +71,23 @@ public class DataServiceTest {
         };
         multiArgInterface.sum(50, 25);
     }
+
+    //collections
+    @Test
+    public void collectionsLambda() throws IOException {
+        List<Person> people = DataService.getPeople();
+
+//        sort
+        Collections.sort(people, new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                return o1.getLastName().compareToIgnoreCase(o2.getLastName());
+            }
+        });
+
+        for (Person person : people) {
+            System.out.println(person.getLastName());
+        }
+    }
+
 }
